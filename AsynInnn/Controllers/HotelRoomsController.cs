@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AsynInnn.Data;
 using AsynInnn.Models;
 
-namespace AsynInnn.Controllers
+namespace AsynInnn.Controllers 
 {
     public class HotelRoomsController : Controller
     {
