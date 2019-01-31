@@ -21,7 +21,53 @@ namespace AsynInnn.Data
             modelBuilder.Entity<RoomAmenities>().HasKey(ce => new { ce.AmenitiesID, ce.RoomID });
 
             //DATA SEEDING GOES HERE
+            modelBuilder.Entity<Hotel>().HasData(
+
+                new Hotel
+                {
+                    ID = 1,
+                    Name = "Async North Seattle",
+                    Address = "Seattle, WA",
+                    Phone = "(206)123-4567"
+                },
+
+                new Hotel
+                {
+                    ID = 2,
+                    Name = "Async South Seattle",
+                    Address = "Seattle, WA",
+                    Phone = "(206)123-4567"
+                },
+
+                new Hotel
+                {
+                    ID = 3,
+                    Name = "Async West Seattle",
+                    Address = "Seattle, WA",
+                    Phone = "(206)123-4567"
+                },
+
+                new Hotel
+                {
+                    ID = 4,
+                    Name = "Async Eastern",
+                    Address = "Eastern, WA",
+                    Phone = "(206)123-4567"
+                },
+
+                new Hotel
+                {
+                    ID = 5,
+                    Name = "Async Western",
+                    Address = "Western, WA",
+                    Phone = "(206)123-4567"
+                }
+                );
+
+           
+                );
         }
+    }
 
         public DbSet<Amenities> Amenities { get; set; }
         public DbSet<Hotel> Hotels { get; set; }
