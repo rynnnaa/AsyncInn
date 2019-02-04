@@ -69,7 +69,7 @@ namespace AsynInnn.Data
                 {
                     ID = 1,
                     Name = "Monarcle",
-                    RoomLayout =
+                    RoomLayout = 0
                 },
 
                 new Room
