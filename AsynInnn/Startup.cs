@@ -31,7 +31,8 @@ namespace AsynInnn
 
             //needed for database
             services.AddDbContext<AsyncInnDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
+            //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
         }
 
