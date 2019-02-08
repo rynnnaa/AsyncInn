@@ -102,14 +102,8 @@ namespace AsynInnn.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AmenitiesExists(amenities.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    throw;
+                
                 }
                 return RedirectToAction(nameof(Index));
             }

@@ -41,7 +41,7 @@ namespace AsynInnn.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
                     RoomLayout = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -98,6 +98,43 @@ namespace AsynInnn.Migrations
                         principalTable: "Room",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Amenities",
+                columns: new[] { "ID", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Dishwasher" },
+                    { 2, "Washer/Dryer" },
+                    { 3, "Kitchen" },
+                    { 4, "Deck" },
+                    { 5, "Pull-Out-Bed" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Hotels",
+                columns: new[] { "ID", "Address", "Name", "Phone" },
+                values: new object[,]
+                {
+                    { 1, "Seattle, WA", "Async North Seattle", "(206)123-4567" },
+                    { 2, "Seattle, WA", "Async South Seattle", "(206)123-4567" },
+                    { 3, "Seattle, WA", "Async West Seattle", "(206)123-4567" },
+                    { 4, "Eastern, WA", "Async Eastern", "(206)123-4567" },
+                    { 5, "Western, WA", "Async Western", "(206)123-4567" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Room",
+                columns: new[] { "ID", "Name", "RoomLayout" },
+                values: new object[,]
+                {
+                    { 1, "Monarcle", 0 },
+                    { 2, "Sheiseido", 0 },
+                    { 3, "Beveren", 1 },
+                    { 4, "Titan", 2 },
+                    { 5, "Oculum", 1 },
+                    { 6, "Vivica", 1 }
                 });
 
             migrationBuilder.CreateIndex(

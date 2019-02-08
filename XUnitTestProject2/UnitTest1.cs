@@ -20,29 +20,25 @@ namespace XUnitTestProject2
 
         }
 
-        [Fact]
-        public async void CanCreateCourse()
-        {
-            Microsoft.EntityFrameworkCore.DbContextOptions<AsyncInnDbContext> options = new
-                DbContextOptionsBuilder<AsyncInnDbContext>().UseInMemoryDatabase
-                ("CreateHotel").Options;
+        //[Fact]
+        //public async void CanCreateCourse()
+        //{
+        //    Microsoft.EntityFrameworkCore.DbContextOptions<AsyncInnDbContext> options = new
+        //        DbContextOptionsBuilder<AsyncInnDbContext>().UseInMemoryDatabase
+        //        ("CreateHotel").Options;
 
-            using (AsyncInnDbContext context = new AsyncInnDbContext
-                (options))
-            {
-                //Arrange
-                Hotel hotel = new Hotel();
-                hotel.ID = 1;
-                hotel.Name = "Dotnet";
+        //    using (AsyncInnDbContext context = new AsyncInnDbContext
+        //        (options))
+        //    {
+        //        //Arrange
+        //        Hotel hotel = new Hotel();
+        //        hotel.ID = 1;
+        //        hotel.Name = "Dotnet";
 
-                //Act
-                HotelService hotelServices = new HotelService(context);
-                await hotelServices.CreateHotel(hotel);
+        //        //Act
+        //        HotelService hotelServices = new HotelService(context);
+        //        await hotelServices.CreateHotel(hotel);
 
-                var result = context
+        //        var result = context
             }
         }
-
-    
-    }
-}

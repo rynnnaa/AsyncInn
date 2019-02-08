@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AsynInnn.Migrations
 {
     [DbContext(typeof(AsyncInnDbContext))]
-    [Migration("20190129194347_initial")]
+    [Migration("20190208012810_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.0-rtm-35687")
+                .HasAnnotation("ProductVersion", "2.2.1-servicing-10028")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -31,6 +31,33 @@ namespace AsynInnn.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Amenities");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Name = "Dishwasher"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Name = "Washer/Dryer"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Name = "Kitchen"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Name = "Deck"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Name = "Pull-Out-Bed"
+                        });
                 });
 
             modelBuilder.Entity("AsynInnn.Models.Hotel", b =>
@@ -48,6 +75,43 @@ namespace AsynInnn.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Hotels");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Address = "Seattle, WA",
+                            Name = "Async North Seattle",
+                            Phone = "(206)123-4567"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Address = "Seattle, WA",
+                            Name = "Async South Seattle",
+                            Phone = "(206)123-4567"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Address = "Seattle, WA",
+                            Name = "Async West Seattle",
+                            Phone = "(206)123-4567"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Address = "Eastern, WA",
+                            Name = "Async Eastern",
+                            Phone = "(206)123-4567"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Address = "Western, WA",
+                            Name = "Async Western",
+                            Phone = "(206)123-4567"
+                        });
                 });
 
             modelBuilder.Entity("AsynInnn.Models.HotelRoom", b =>
@@ -75,13 +139,52 @@ namespace AsynInnn.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<int>("RoomLayout");
 
                     b.HasKey("ID");
 
                     b.ToTable("Room");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Name = "Monarcle",
+                            RoomLayout = 0
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Name = "Sheiseido",
+                            RoomLayout = 0
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Name = "Beveren",
+                            RoomLayout = 1
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Name = "Titan",
+                            RoomLayout = 2
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Name = "Oculum",
+                            RoomLayout = 1
+                        },
+                        new
+                        {
+                            ID = 6,
+                            Name = "Vivica",
+                            RoomLayout = 1
+                        });
                 });
 
             modelBuilder.Entity("AsynInnn.Models.RoomAmenities", b =>
