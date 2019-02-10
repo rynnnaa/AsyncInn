@@ -5,7 +5,24 @@ using System.Threading.Tasks;
 
 namespace AsynInnn.Models.Interfaces
 {
-    interface IRoomManager
+    public interface IRoomManager
     {
+        //create
+        Task CreateRoom(Room room);
+
+        //read
+        Task<Hotel> GetRoom(int? id);
+        Task<IEnumerable<Room>> GetRooms();
+
+        //update/edit
+
+        Task UpdateRoom(Room room);
+
+
+        //delete
+        Task DeleteRoom(int id);
+
+        //Check if exists
+        bool RoomExists(int id);
     }
 }
