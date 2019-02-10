@@ -32,7 +32,7 @@ namespace AsynInnn.Models.Services
 
         public async Task<Hotel> GetHotel(int? id)
         {
-            return await _context.Hotels.FirstOrDefaultAsync(htl => htl.ID == id);
+            return await _context.Hotels.FirstOrDefaultAsync(h => h.ID == id);
         }
 
         //update

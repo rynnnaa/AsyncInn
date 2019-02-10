@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace AsynInnn.Models.Interfaces
 {
-    interface IHotelManager 
+    public interface IHotelManager 
     {
         //create
-        Task Hotel(Hotel hotel);
+        Task CreateHotel(Hotel hotel);
 
         //read
         Task<Hotel> GetHotel(int? id);
