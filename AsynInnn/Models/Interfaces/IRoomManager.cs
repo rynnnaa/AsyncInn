@@ -5,15 +5,7 @@ using System.Threading.Tasks;
 
 namespace AsynInnn.Models.Interfaces
 {
-    public class IRoomManager
+    interface IRoomManager
     {
-        //create
-
-
-        //read
-
-        //update/edit
-
-        //delete
     }
 }

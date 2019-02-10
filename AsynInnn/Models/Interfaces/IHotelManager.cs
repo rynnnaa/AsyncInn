@@ -5,16 +5,7 @@ using System.Threading.Tasks;
 
 namespace AsynInnn.Models.Interfaces
 {
-    public class IHotelManager
+    interface IHotelManager
     {
-
-        //create
-
-
-        //read
-
-        //update/edit
-
-        //delete
     }
 }
