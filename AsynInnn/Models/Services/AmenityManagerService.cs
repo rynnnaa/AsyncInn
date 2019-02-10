@@ -43,6 +43,21 @@ namespace AsynInnn.Models.Services
 
         }
 
+        //delete
+        public async Task DeleteAmenity(int id)
+        {
+            Amenities amenity = _context.Amenities.FirstOrDefault(a => a.ID == id);
+            _context.Amenities.Remove(amenity);
+            await _context.SaveChangesAsync();
+
+        }
+
+        //bool exists
+
+        public bool AmenityExists(int id)
+        {
+            return _context.Amenities.Any(a => a.ID == id);
+        }
 
     }
  
