@@ -25,5 +25,25 @@ namespace AsynInnn.Models.Services
         }
 
         //read
+        public async Task<IEnumerable<Amenities>> GetAmenities()
+        {
+            return await _context.Amenities.ToListAsync();
+        }
+
+        public async Task<Amenities> GetAmenity(int? id)
+        {
+            return await _context.Amenities.FirstOrDefaultAsync(a => a.ID == id);
+        }
+
+        //update
+        public async Task UpdateAmenity(Amenities amenities)
+        {
+            _context.Amenities.Update(amenities);
+            await _context.SaveChangesAsync();
+
+        }
+
+
     }
+ 
 }
