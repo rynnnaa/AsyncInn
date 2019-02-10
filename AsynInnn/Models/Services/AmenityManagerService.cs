@@ -16,5 +16,14 @@ namespace AsynInnn.Models.Services
         {
             _context = context;
         }
+
+        //create
+        public async Task CreateAmenity(Amenities amenities)
+        {
+            _context.Amenities.Add(amenities);
+            await _context.SaveChangesAsync();
+        }
+
+        //read
     }
 }
