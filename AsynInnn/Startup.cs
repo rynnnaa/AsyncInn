@@ -39,6 +39,7 @@ namespace AsynInnn
             options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
             //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            //run the service
             services.AddScoped<IRoomManager, RoomManagementService>();
             services.AddScoped<IHotelManager, HotelManagementService>();
             services.AddScoped<IAmenityManager, AmenityManagerService>();

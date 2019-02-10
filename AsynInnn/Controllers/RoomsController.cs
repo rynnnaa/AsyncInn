@@ -13,13 +13,12 @@ namespace AsynInnn.Controllers
 {
     public class RoomsController : Controller
     {
-        private readonly IRoomManager _context;
-        private readonly AsyncInnDbContext _rooms;
+        private readonly AsyncInnDbContext _context;
 
         public RoomsController(AsyncInnDbContext context)
         {
             _context = context;
-            _rooms = rooms;
+      
         }
 
         // GET: Rooms
