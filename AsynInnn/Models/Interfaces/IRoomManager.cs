@@ -11,7 +11,7 @@ namespace AsynInnn.Models.Interfaces
         Task CreateRoom(Room room);
 
         //read
-        Task<Hotel> GetRoom(int? id);
+        Task<Room> GetRoom(int? id);
         Task<IEnumerable<Room>> GetRooms();
 
         //update/edit
