@@ -7,15 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AsynInnn.Data;
 using AsynInnn.Models;
-using AsynInnn.Models.Interfaces;
 
 namespace AsynInnn.Controllers
 {
     public class AmenitiesController : Controller
     {
-        private readonly IAmenityManager _context;
+        private readonly AsyncInnDbContext _context;
 
-        public AmenitiesController(IAmenityManager context)
+        public AmenitiesController(AsyncInnDbContext context)
         {
             _context = context;
         }
@@ -23,26 +22,26 @@ namespace AsynInnn.Controllers
         // GET: Amenities
         public async Task<IActionResult> Index()
         {
-            return View(_context.GetAmenities());
+            return View(await _context.Amenities.ToListAsync());
         }
 
         // GET: Amenities/Details/5
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        //    var amenities = await _context.Amenities
-        //        .FirstOrDefaultAsync(m => m.ID == id);
-        //    if (amenities == null)
-        //    {
-        //        return NotFound();
-        //    }
+            var amenities = await _context.Amenities
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (amenities == null)
+            {
+                return NotFound();
+            }
 
-        //    return View(amenities);
-        //}
+            return View(amenities);
+        }
 
         // GET: Amenities/Create
         public IActionResult Create()
@@ -59,7 +58,8 @@ namespace AsynInnn.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _context.CreateAmenity(amenities);
+                _context.Add(amenities);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(amenities);
