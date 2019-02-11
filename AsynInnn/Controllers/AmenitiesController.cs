@@ -20,11 +20,11 @@ namespace AsynInnn.Controllers
             _context = context;
         }
 
-        // GET: Amenities
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.GetAmenities());
-        }
+        //// GET: Amenities
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _context.GetAmenities());
+        //}
 
         // GET: Amenities/Details/5
         public async Task<IActionResult> Details(int id)
@@ -141,5 +141,14 @@ namespace AsynInnn.Controllers
             }
             return true;
         }
+
+        //Get Amenities + search
+        public async Task<IActionResult> Index(string searchString)
+        {
+            if (searchString == null)
+            {
+                return View(await _context.GetAmenities());
+            }
+            var amenities = await _context.GetAmenities();
     }
 }
