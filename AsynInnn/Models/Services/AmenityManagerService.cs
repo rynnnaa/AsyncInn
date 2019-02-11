@@ -25,7 +25,7 @@ namespace AsynInnn.Models.Services
         }
 
         //read
-        public async Task<IEnumerable<Amenities>> GetAmenities()
+        public async Task<IEnumerable<Amenities>> GetAmenities(Amenities amenities)
         {
             return await _context.Amenities.ToListAsync();
         }
