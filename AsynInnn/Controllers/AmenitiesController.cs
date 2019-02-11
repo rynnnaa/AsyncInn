@@ -175,7 +175,7 @@ namespace AsynInnn.Controllers
         /// </summary>
         /// <param name="searchString"></param>
         /// <returns></returns>
-        //Get Amenities + search
+
         public async Task<IActionResult> Index(string searchString)
         {
             if (searchString == null)

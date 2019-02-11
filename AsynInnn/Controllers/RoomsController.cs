@@ -13,6 +13,9 @@ namespace AsynInnn.Controllers
 {
     public class RoomsController : Controller
     {
+        /// <summary>
+        /// brings in interface
+        /// </summary>
         private readonly IRoomManager _context;
 
         public RoomsController(IRoomManager context)
@@ -22,11 +25,15 @@ namespace AsynInnn.Controllers
         }
 
         // GET: Rooms
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.GetRooms());
-        }
-
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _context.GetRooms());
+        //}
+        /// <summary>
+        /// Display details for rooms
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Details to view</returns>
         // GET: Rooms/Details/5
         public async Task<IActionResult> Details(int id)
         {
@@ -39,7 +46,10 @@ namespace AsynInnn.Controllers
             return View(room);
         }
 
-
+        /// <summary>
+        /// Displays the create view
+        /// </summary>
+        /// <returns></returns>
         // GET: Rooms/Create
         public IActionResult Create()
         {
@@ -112,6 +122,11 @@ namespace AsynInnn.Controllers
             return View(room);
         }
 
+        /// <summary>
+        /// Displays delete view
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>delete view</returns>
         // GET: Rooms/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
@@ -125,6 +140,11 @@ namespace AsynInnn.Controllers
             return View(room);
         }
 
+        /// <summary>
+        /// Deleting one instance
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>deletion</returns>
         // POST: Rooms/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -134,7 +154,11 @@ namespace AsynInnn.Controllers
             await _context.DeleteRoom(id);
             return RedirectToAction(nameof(Index));
         }
-
+        /// <summary>
+        /// Checks to see if room exists
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         private bool RoomExists(int id)
         {
             if (_context.GetRoom(id) != null)
@@ -143,8 +167,27 @@ namespace AsynInnn.Controllers
             }
             return true;
         }
-        
 
+        /// <summary>
+        /// Create search bar
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> Index(string searchString)
+        {
+            if (searchString == null)
+            {
+                return View(await _context.GetRooms());
+            }
+            var rooms = await _context.GetRooms();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                rooms = rooms.Where(r => r.Name.ToLower().Contains(searchString.ToLower()));
+            }
+
+            return View(rooms);
+        }
 
     }
 }

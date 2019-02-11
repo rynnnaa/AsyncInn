@@ -19,6 +19,11 @@ namespace AsynInnn.Controllers
             _context = context;
         }
 
+
+        /// <summary>
+        /// Gets list of all room amenities and sends to view
+        /// </summary>
+        /// <returns>view</returns>
         // GET: RoomAmenities
         public async Task<IActionResult> Index()
         {
@@ -26,6 +31,11 @@ namespace AsynInnn.Controllers
             return View(await asyncInnDbContext.ToListAsync());
         }
 
+        /// <summary>
+        /// Show details of one room amenity
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>detail view</returns>
         // GET: RoomAmenities/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -46,6 +56,11 @@ namespace AsynInnn.Controllers
             return View(roomAmenities);
         }
 
+
+        /// <summary>
+        /// Creates new instance of room amenities
+        /// </summary>
+        /// <returns>List of all room amenities</returns>
         // GET: RoomAmenities/Create
         public IActionResult Create()
         {
@@ -72,6 +87,12 @@ namespace AsynInnn.Controllers
             return View(roomAmenities);
         }
 
+
+        /// <summary>
+        /// Edit details for room amenities
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET: RoomAmenities/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -126,7 +147,12 @@ namespace AsynInnn.Controllers
             ViewData["RoomID"] = new SelectList(_context.Room, "ID", "ID", roomAmenities.RoomID);
             return View(roomAmenities);
         }
-
+        /// <summary>
+        /// shows delete page
+        /// </summary>
+        /// <param name="roomID"></param>
+        /// <param name="hotelID"></param>
+        /// <returns></returns>
         // GET: RoomAmenities/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -147,6 +173,13 @@ namespace AsynInnn.Controllers
             return View(roomAmenities);
         }
 
+
+        /// <summary>
+        /// Deletes a room amenity instance
+        /// </summary>
+        /// <param name="amenitiesID"></param>
+        /// <param name="roomID"></param>
+        /// <returns></returns>
         // POST: RoomAmenities/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -157,7 +190,11 @@ namespace AsynInnn.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+        /// <summary>
+        /// Verifies room amenities exitis
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>true or false</returns>
         private bool RoomAmenitiesExists(int id)
         {
             return _context.RoomAmenities.Any(e => e.AmenitiesID == id);
