@@ -18,7 +18,10 @@ namespace AsynInnn.Controllers
         {
             _context = context;
         }
-
+        /// <summary>
+        /// Gets the list of all hotel rooms =
+        /// </summary>
+        /// <returns>view</returns>
         // GET: HotelRooms
         public async Task<IActionResult> Index()
         {
@@ -26,6 +29,11 @@ namespace AsynInnn.Controllers
             return View(await asyncInnDbContext.ToListAsync());
         }
 
+        /// <summary>
+        /// Gives details of one hotel room
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET: HotelRooms/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -46,6 +54,10 @@ namespace AsynInnn.Controllers
             return View(hotelRoom);
         }
 
+        /// <summary>
+        /// Creates an instance of hotel room
+        /// </summary>
+        /// <returns></returns>
         // GET: HotelRooms/Create
         public IActionResult Create()
         {
@@ -72,6 +84,11 @@ namespace AsynInnn.Controllers
             return View(hotelRoom);
         }
 
+        /// <summary>
+        /// Edit details of hotel room
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET: HotelRooms/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -127,6 +144,12 @@ namespace AsynInnn.Controllers
             return View(hotelRoom);
         }
 
+        /// <summary>
+        /// shows delete page
+        /// </summary>
+        /// <param name="roomID"></param>
+        /// <param name="hotelID"></param>
+        /// <returns></returns>
         // GET: HotelRooms/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -147,6 +170,13 @@ namespace AsynInnn.Controllers
             return View(hotelRoom);
         }
 
+
+        /// <summary>
+        /// Deletes a selected hotel room
+        /// </summary>
+        /// <param name="roomID"></param>
+        /// <param name="hotelID"></param>
+        /// <returns></returns>
         // POST: HotelRooms/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -158,6 +188,11 @@ namespace AsynInnn.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Verifies hotel room exitis
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>true or false</returns>
         private bool HotelRoomExists(int id)
         {
             return _context.HotelRooms.Any(e => e.HotelID == id);

@@ -13,6 +13,9 @@ namespace AsynInnn.Controllers
 {
     public class AmenitiesController : Controller
     {
+        /// <summary>
+        /// brings in interface
+        /// </summary>
         private readonly IAmenityManager _context;
 
         public AmenitiesController(IAmenityManager context)
@@ -20,12 +23,18 @@ namespace AsynInnn.Controllers
             _context = context;
         }
 
-        // GET: Amenities
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.GetAmenities());
-        }
+        //// GET: Amenities
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _context.GetAmenities());
+        //}
 
+
+        /// <summary>
+        /// Display details for amenity
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Details to view</returns>
         // GET: Amenities/Details/5
         public async Task<IActionResult> Details(int id)
         {
@@ -38,6 +47,10 @@ namespace AsynInnn.Controllers
             return View(amenities);
         }
 
+        /// <summary>
+        /// Displays the create view
+        /// </summary>
+        /// <returns></returns>
         // GET: Amenities/Create
         public IActionResult Create()
         {
@@ -109,6 +122,12 @@ namespace AsynInnn.Controllers
             return View(amenities);
         }
 
+        /// <summary>
+        /// Displays delete view
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>delete view</returns>
+
         // GET: Amenities/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
@@ -123,6 +142,11 @@ namespace AsynInnn.Controllers
             return View(amenities);
         }
 
+        /// <summary>
+        /// Deleting one instance
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>deletion</returns>
         // POST: Amenities/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -133,6 +157,11 @@ namespace AsynInnn.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Checks to see if amenity exists
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         private bool AmenitiesExists(int id)
         {
             if (_context.GetAmenity(id) != null)
@@ -140,6 +169,27 @@ namespace AsynInnn.Controllers
                 return false;
             }
             return true;
+        }
+        /// <summary>
+        /// Create search bar
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <returns></returns>
+
+        public async Task<IActionResult> Index(string searchString)
+        {
+            if (searchString == null)
+            {
+                return View(await _context.GetAmenities());
+            }
+            var amenities = await _context.GetAmenities();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                amenities = amenities.Where(a => a.Name.ToLower().Contains(searchString.ToLower()));
+            }
+
+            return View(amenities);
         }
     }
 }
