@@ -356,6 +356,8 @@ namespace XUnitTestProject2
                 //Arrange
                 Hotel hotel = new Hotel();
                 hotel.ID = 1;
+                hotel.Name = "NotDotnet";
+
                 hotel.Name = "Dotnet";
 
                 //Act
@@ -368,7 +370,7 @@ namespace XUnitTestProject2
                 Assert.Equal(hotel, result);
             }
         }
-
+        [Fact]
         public async void CanDeleteHotel()
         {
             Microsoft.EntityFrameworkCore.DbContextOptions<AsyncInnDbContext> options = new
@@ -392,7 +394,245 @@ namespace XUnitTestProject2
 
                 Assert.Null(result);
             }
+        }
 
+        [Fact]
+        public async void CanCreateAmenity()
+        {
+            Microsoft.EntityFrameworkCore.DbContextOptions<AsyncInnDbContext> options = new
+                DbContextOptionsBuilder<AsyncInnDbContext>().UseInMemoryDatabase
+                ("CreateHotel").Options;
+
+            using (AsyncInnDbContext context = new AsyncInnDbContext
+                (options))
+            {
+                //Arrange
+                Amenities amenities = new Amenities();
+                amenities.ID = 1;
+                amenities.Name = "Iron";
+
+                //Act
+                AmenityManagerService amenityService = new AmenityManagerService(context);
+                await amenityService.CreateAmenity(amenities);
+
+                Amenities result = await context.Amenities.FirstOrDefaultAsync(h => h.ID == amenities.ID);
+
+                Assert.Equal(amenities, result);
+            }
+        }
+
+        [Fact]
+        public async void CreateEmptyAmenityName()
+        {
+            DbContextOptions<AsyncInnDbContext> options = new DbContextOptionsBuilder<AsyncInnDbContext>().UseInMemoryDatabase("CreateEmptyAmenity").Options;
+
+            using (AsyncInnDbContext context = new AsyncInnDbContext(options))
+            {
+                Amenities amenity = new Amenities();
+                amenity.ID = 1;
+
+                AmenityManagerService amenitiesService = new AmenityManagerService(context);
+                await amenitiesService.CreateAmenity(amenity);
+
+                Amenities result = await context.Amenities.FirstOrDefaultAsync(a => a.Name != null);
+
+                Assert.NotEqual(amenity, result);
+            }
+        }
+
+        [Fact]
+        public async void CanUpdateAmenity()
+        {
+            Microsoft.EntityFrameworkCore.DbContextOptions<AsyncInnDbContext> options = new
+                DbContextOptionsBuilder<AsyncInnDbContext>().UseInMemoryDatabase
+                ("CreateHotel").Options;
+
+            using (AsyncInnDbContext context = new AsyncInnDbContext
+                (options))
+            {
+                //Arrange
+                Amenities amenities = new Amenities();
+                amenities.ID = 1;
+                amenities.Name = "Iron";
+
+                amenities.Name = "Washer";
+
+                //Act
+                AmenityManagerService amenityService = new AmenityManagerService(context);
+                await amenityService.CreateAmenity(amenities);
+                await amenityService.UpdateAmenity(amenities);
+
+                var result = await context.Amenities.FirstOrDefaultAsync(h => h.ID == amenities.ID);
+
+                Assert.Equal(amenities, result);
+            }
+
+
+        }
+        [Fact]
+        public async void CanReadAmenity()
+        {
+            Microsoft.EntityFrameworkCore.DbContextOptions<AsyncInnDbContext> options = new
+                DbContextOptionsBuilder<AsyncInnDbContext>().UseInMemoryDatabase
+                ("CreateHotel").Options;
+
+            using (AsyncInnDbContext context = new AsyncInnDbContext
+                (options))
+            {
+                //Arrange
+                Amenities amenities = new Amenities();
+                amenities.ID = 1;
+                amenities.Name = "Iron";
+
+                //Act
+                AmenityManagerService amenityService = new AmenityManagerService(context);
+                await amenityService.CreateAmenity(amenities);
+                await amenityService.GetAmenities(amenities);
+
+                var result = await context.Amenities.FirstOrDefaultAsync(h => h.ID == h.ID);
+
+                Assert.Equal(amenities, result);
+            }
+
+
+        }
+        [Fact]
+        public async void CanDeleteAmenity()
+        {
+            Microsoft.EntityFrameworkCore.DbContextOptions<AsyncInnDbContext> options = new
+                DbContextOptionsBuilder<AsyncInnDbContext>().UseInMemoryDatabase
+                ("CreateHotel").Options;
+
+            using (AsyncInnDbContext context = new AsyncInnDbContext
+                (options))
+            {
+                //Arrange
+                Amenities amenities = new Amenities();
+                amenities.ID = 1;
+                amenities.Name = "Iron";
+
+                //Act
+                AmenityManagerService amenityService = new AmenityManagerService(context);
+                await amenityService.CreateAmenity(amenities);
+                await amenityService.DeleteAmenity(1);
+
+                var result = await context.Amenities.FirstOrDefaultAsync(h => h.ID == amenities.ID);
+
+                Assert.Null(result);
+            }
+
+        }
+
+        [Fact]
+        public async void CanCreateRoom()
+        {
+            Microsoft.EntityFrameworkCore.DbContextOptions<AsyncInnDbContext> options = new
+                DbContextOptionsBuilder<AsyncInnDbContext>().UseInMemoryDatabase
+                ("CreateRoom").Options;
+
+            using (AsyncInnDbContext context = new AsyncInnDbContext
+                (options))
+            {
+                //Arrange
+                Room room = new Room();
+                room.ID = 1;
+                room.Name = "Iron";
+                room.RoomLayout = Layout.OneBedroom;
+
+                //Act
+                RoomManagementService roomService = new RoomManagementService(context);
+                await roomService.CreateRoom(room);
+
+                var result = await context.Room.FirstOrDefaultAsync(h => h.ID == room.ID);
+
+                Assert.Equal(room, result);
+            }
+
+        }
+        [Fact]
+        public async void CanDeleteRoom()
+        {
+            Microsoft.EntityFrameworkCore.DbContextOptions<AsyncInnDbContext> options = new
+                DbContextOptionsBuilder<AsyncInnDbContext>().UseInMemoryDatabase
+                ("DeleteRoom").Options;
+
+            using (AsyncInnDbContext context = new AsyncInnDbContext
+                (options))
+            {
+                //Arrange
+                Room room = new Room();
+                room.ID = 1;
+                room.Name = "Iron";
+                room.RoomLayout = Layout.OneBedroom;
+
+                //Act
+                RoomManagementService roomService = new RoomManagementService(context);
+                await roomService.CreateRoom(room);
+                await roomService.DeleteRoom(1);
+
+                var result = await context.Room.FirstOrDefaultAsync(h => h.ID == room.ID);
+
+                Assert.Null(result);
+            }
+
+
+        }
+
+        [Fact]
+        public async void CanReadRoom()
+        {
+            Microsoft.EntityFrameworkCore.DbContextOptions<AsyncInnDbContext> options = new
+                DbContextOptionsBuilder<AsyncInnDbContext>().UseInMemoryDatabase
+                ("ReadRoom").Options;
+
+            using (AsyncInnDbContext context = new AsyncInnDbContext
+                (options))
+            {
+                //Arrange
+                Room room = new Room();
+                room.ID = 1;
+                room.Name = "Iron";
+                room.RoomLayout = Layout.OneBedroom;
+
+                //Act
+                RoomManagementService roomService = new RoomManagementService(context);
+                await roomService.CreateRoom(room);
+                await roomService.GetRoom(1);
+
+                var result = await context.Room.FirstOrDefaultAsync(h => h.ID == room.ID);
+
+                Assert.Equal(room, result);
+            }
+
+        }
+
+        [Fact]
+        public async void CanUpdateRoom()
+        {
+            Microsoft.EntityFrameworkCore.DbContextOptions<AsyncInnDbContext> options = new
+                DbContextOptionsBuilder<AsyncInnDbContext>().UseInMemoryDatabase
+                ("CreateRoom").Options;
+
+            using (AsyncInnDbContext context = new AsyncInnDbContext
+                (options))
+            {
+                //Arrange
+                Room room = new Room();
+                room.ID = 1;
+                room.Name = "Iron";
+                room.RoomLayout = Layout.OneBedroom;
+
+                room.RoomLayout = Layout.TwoBedroom;
+
+                //Act
+                RoomManagementService roomService = new RoomManagementService(context);
+                await roomService.CreateRoom(room);
+                await roomService.UpdateRoom(room);
+
+                var result = await context.Room.FirstOrDefaultAsync(h => h.ID == room.ID);
+
+                Assert.Equal(room, result);
+            }
 
         }
     }
