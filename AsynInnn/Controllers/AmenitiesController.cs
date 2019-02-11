@@ -150,5 +150,13 @@ namespace AsynInnn.Controllers
                 return View(await _context.GetAmenities());
             }
             var amenities = await _context.GetAmenities();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                amenities = amenities.Where(a => a.Name.ToLower().Contains(searchString.ToLower()));
+            }
+
+            return View();
+        }
     }
 }
