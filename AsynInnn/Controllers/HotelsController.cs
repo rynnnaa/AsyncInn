@@ -132,7 +132,7 @@ namespace AsynInnn.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-
+            
             var hotel = await _context.GetHotel(id);
             await _context.DeleteHotel(id);
             return RedirectToAction(nameof(Index));
