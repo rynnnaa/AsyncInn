@@ -7,14 +7,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AsynInnn.Data;
 using AsynInnn.Models;
+using AsynInnn.Models.Interfaces;
 
 namespace AsynInnn.Controllers
 {
     public class AmenitiesController : Controller
     {
-        private readonly AsyncInnDbContext _context;
+        private readonly IAmenityManager _context;
 
-        public AmenitiesController(AsyncInnDbContext context)
+        public AmenitiesController(IAmenityManager context)
         {
             _context = context;
         }
@@ -22,7 +23,7 @@ namespace AsynInnn.Controllers
         // GET: Amenities
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Amenities.ToListAsync());
+            return View(await _context.GetAmenities());
         }
 
         // GET: Amenities/Details/5
