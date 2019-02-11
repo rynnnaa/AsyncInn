@@ -156,7 +156,7 @@ namespace AsynInnn.Controllers
                 amenities = amenities.Where(a => a.Name.ToLower().Contains(searchString.ToLower()));
             }
 
-            return View();
+            return View(amenities);
         }
     }
 }
