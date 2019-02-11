@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AsynInnn.Data;
+using AsynInnn.Models.Interfaces;
+using AsynInnn.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -19,6 +21,9 @@ namespace AsynInnn
 
         public Startup(IConfiguration configuration)
         {
+            var builder = new ConfigurationBuilder().AddEnvironmentVariables();
+            builder.AddUserSecrets<Startup>();
+            Configuration = builder.Build();
             Configuration = configuration;
         }
 
@@ -31,9 +36,13 @@ namespace AsynInnn
 
             //needed for database
             services.AddDbContext<AsyncInnDbContext>(options =>
-            options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
-            //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            //run the service
+            services.AddScoped<IRoomManager, RoomManagementService>();
+            services.AddScoped<IHotelManager, HotelManagementService>();
+            services.AddScoped<IAmenityManager, AmenityManagerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
