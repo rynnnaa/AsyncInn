@@ -18,16 +18,16 @@ Visual:
 ![Homepage](https://github.com/rynnnaa/AsyncInn/blob/master/AsynInnn/Assets/Home%20page.PNG)
 
 #Room
-[Room](https://github.com/rynnnaa/AsyncInn/blob/master/AsynInnn/Assets/Rooms.PNG)
+![Room](https://github.com/rynnnaa/AsyncInn/blob/master/AsynInnn/Assets/Rooms.PNG)
 
 #Amenities
-[Amenities](https://github.com/rynnnaa/AsyncInn/blob/master/AsynInnn/Assets/amenitites.PNG)
+![Amenities](https://github.com/rynnnaa/AsyncInn/blob/master/AsynInnn/Assets/amenitites.PNG)
 
 #Hotel Room
-[Hotel Room](https://github.com/rynnnaa/AsyncInn/blob/master/AsynInnn/Assets/Hotel%20room.PNG)
+![Hotel Room](https://github.com/rynnnaa/AsyncInn/blob/master/AsynInnn/Assets/Hotel%20room.PNG)
 
 #Hotel
-[Hotel](https://github.com/rynnnaa/AsyncInn/blob/master/AsynInnn/Assets/Hotel.PNG)
+![Hotel](https://github.com/rynnnaa/AsyncInn/blob/master/AsynInnn/Assets/Hotel.PNG)
 
 #Room Amenities
-[Room Amenities](https://github.com/rynnnaa/AsyncInn/blob/master/AsynInnn/Assets/room%20amenities.PNG)
+![Room Amenities](https://github.com/rynnnaa/AsyncInn/blob/master/AsynInnn/Assets/room%20amenities.PNG)
