@@ -59,6 +59,10 @@ namespace AsynInnn.Models.Services
             return _context.Amenities.Any(a => a.ID == id);
         }
 
+        public Task<IEnumerable<Amenities>> GetAmenities()
+        {
+            throw new NotImplementedException();
+        }
     }
  
 }
